@@ -3,10 +3,10 @@ Device Model
 ===============================================================================
 
 The device model describes the metadata and management characteristics of a 
-device. The device database in the Internet of Things Foundation is the master 
+device. The device database in the Watson IoT platform is the master 
 source of device information. Applications and managed devices are able 
 to send updates to the database such as a location or the progress of a firmware 
-update. Once these updates are received by the Internet of Things Foundation, the 
+update. Once these updates are received by the Watson IoT platform, the 
 device database is updated, making the information available to applications.
 
 .. note:: With the exception of the management extension, the entire device model 
@@ -21,9 +21,9 @@ Device Identification
 
 Every device has a typeId and deviceId attribute. Typically, the 
 typeId represents the model of your device, whilst the deviceId can represent its serial number. Within
-your Internet of Things Foundation organization, the combination of typeId and deviceId must be unique for each device.
+your Watson IoT platform organization, the combination of typeId and deviceId must be unique for each device.
 
-In addition, the Internet of Things Foundation constructs a further identifier for each device based on your organizationId, the device's typeId and the device's deviceId. This identifier - the clientId - allows you to identify unequivocally an individual device.  
+In addition, the Watson IoT platform constructs a further identifier for each device based on your organizationId, the device's typeId and the device's deviceId. This identifier - the clientId - allows you to identify unequivocally an individual device.  
 
 The characters which can be used in these identifiers are restricted so they can be used straightforwardly in 
 communication protocols and REST APIs. There are a number of optional device 
@@ -45,12 +45,11 @@ identifiers in other device management standards, see Device Model Attributes Re
 Identifiers and Device Type
 -------------------------------------------------------------------------------
 
-Each device connected to the Internet of Things Foundation is associated with a device 
+Each device connected to the Watson IoT platform is associated with a device 
 type. Device types are intended to be groups of devices which share 
 characteristics or behaviour. 
 
-A device type has a set of attributes. When a device is added to the Internet of 
-Things Foundation, the attributes in its device type are used as a template overridden 
+A device type has a set of attributes. When a device is added to the Watson IoT platform, the attributes in its device type are used as a template overridden 
 by device-specific attributes. For example, the device type could have a value for 
 the ``deviceInfo.fwVersion`` attribute reflecting the firmware version at the time of 
 manufacture, and this value would be copied from the device type into the devices as 
@@ -68,8 +67,7 @@ unchanged.
 Attributes
 -------------------------------------------------------------------------------
 
-The table below shows the list of attributes which can apply to devices in the Internet 
-of Things Foundation. Additionally, italicized attributes can also apply to device types.
+The table below shows the list of attributes which can apply to devices in the Watson IoT platform. Additionally, italicized attributes can also apply to device types.
 
 - API/DMA: Can be updated by API/Device Management Agent
 
@@ -80,12 +78,17 @@ of Things Foundation. Additionally, italicized attributes can also apply to devi
 +----------------------------------+------------+---------------------------------------------------+-----+-----+
 | Attribute                        | Type       | Description                                       | API | DMA |
 +==================================+============+===================================================+=====+=====+
-| clientId                         | string     | The client ID used with MQTT connections (d:org-  |  R  |     |
-|                                  |            | id:device-type:device-id)                         |     |     |
+| clientId                         | string     | The client ID used with MQTT connections          |  R  |     |
 +----------------------------------+------------+---------------------------------------------------+-----+-----+
 | *typeId*                         | string     | Device type                                       |  R  |     |
 +----------------------------------+------------+---------------------------------------------------+-----+-----+
 | deviceId                         | string     | Device ID                                         |  R  |     |
++----------------------------------+------------+---------------------------------------------------+-----+-----+
+| classId                          | string     | Class of device ("Device" or "Gateway")           |  R  |     |
++----------------------------------+------------+---------------------------------------------------+-----+-----+
+| gatewayTypeId                    | string     | Type ID of the gateway this device is using       |  R  |     |
++----------------------------------+------------+---------------------------------------------------+-----+-----+
+| gatewayId                        | string     | Device ID of the gateway this device is using     |  R  |     |
 +----------------------------------+------------+---------------------------------------------------+-----+-----+
 | status.alert                     | boolean    | Whether the device has an alert                   |  W  |     |
 +----------------------------------+------------+---------------------------------------------------+-----+-----+
@@ -147,7 +150,7 @@ from the extensions must be specifically requested.
 Diagnostics Extension
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The diagnostics attributes are optional, and only present for devices with error log information. These attributes are intended for diagnosing device problems, not troubleshooting connectivity to the Internet of Things Foundation. In order to retrieve the information in these attributes, it must be queried separately, because the information stored in these attributes could potentially be very large. 
+The diagnostics attributes are optional, and only present for devices with error log information. These attributes are intended for diagnosing device problems, not troubleshooting connectivity to the Watson IoT platform. In order to retrieve the information in these attributes, it must be queried separately, because the information stored in these attributes could potentially be very large. 
 
 Diagnostic log information is an array of entries which can have entries appended using an API, however, this can cause earlier entries to be lost, to keep the size of diagnostic logs manageable. Each entry consists of a message, an indication of severity, a timestamp and an optional byte-array of data.
 
@@ -196,9 +199,9 @@ For solutions which place significant importance on frequent location updates, i
 Device Management Extension
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``mgmt.`` attributes are only present for managed devices. When a managed device becomes dormant, it becomes unmanaged and the ``mgmt.`` attributes are deleted. The ``mgmt.`` attributes are set by the Internet of Things Foundation as a result of processing device management requests. These attributes cannot be directly written using the API.
+The ``mgmt.`` attributes are only present for managed devices. When a managed device becomes dormant, it becomes unmanaged and the ``mgmt.`` attributes are deleted. The ``mgmt.`` attributes are set by the Watson IoT platform as a result of processing device management requests. These attributes cannot be directly written using the API.
 
-Devices have a management lifecycle, defined by their status as managed devices. The device management agent on the device is responsible for sending a Manage Device request using the device management protocol. To deal with defunct devices in large device populations, a managed device can be set to send a Manage Device request regularly, allowing the Internet of Things Foundation to notice when a device has become dormant. To facilitate this functionality, the Manage Device request has an optional lifetime parameter, When the Internet of Things Foundation receives a Manage Device request with a lifetime, it calculates the time before which another Manage Device request is required and stores it in the  "mgmt.dormantDateTime" attribute.
+Devices have a management lifecycle, defined by their status as managed devices. The device management agent on the device is responsible for sending a Manage Device request using the device management protocol. To deal with defunct devices in large device populations, a managed device can be set to send a Manage Device request regularly, allowing the Watson IoT platform to notice when a device has become dormant. To facilitate this functionality, the Manage Device request has an optional lifetime parameter, When the Watson IoT platform receives a Manage Device request with a lifetime, it calculates the time before which another Manage Device request is required and stores it in the  "mgmt.dormantDateTime" attribute.
 
 +--------------------------------+---------+--------------------------------------------------------+-----+-----+
 | Attribute                      | Type    | Description                                            | API | DMA |

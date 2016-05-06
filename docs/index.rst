@@ -1,106 +1,64 @@
-.. IBM IOT Foundation documentation master file, created by
-   sphinx-quickstart on Wed Dec 31 00:00:45 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-===============================================================================
 Introduction
-===============================================================================
+============
 
-About
--------------------------------------------------------------------------------
-Welcome to the documentation/reference material for IBM's IoT Foundation 
+Welcome to the documentation/reference material for IBM's IoT Platform 
 service.  If you are looking for tutorials you can find them on developerWorks Recipes_.
 
 .. _Recipes: https://developer.ibm.com/recipes/
 
 
-
-The documentation is organized into a number of sections:
-
-Introduction
--------------------------------------------------------------------------------
-
 .. toctree::
-    :maxdepth: 1
-
-    index
-    intro/getting_started
-    reference/concepts
-    reference/device_model
-    reference/device_mgmt
-
-API
--------------------------------------------------------------------------------
-
-.. toctree::
-    
-    api/api_intro
-    API Version 2 <http://docs.internetofthings.ibmcloud.com/swagger/v0002.html>
-    API Version 1 <http://docs.internetofthings.ibmcloud.com/swagger/v0001.html>
-
-Device Management Operations
-------------------------------------------------------------------------------
-
-.. toctree::
+    :caption: Getting Started
     :maxdepth: 1
     
-    device_mgmt/operations/index
-    device_mgmt/operations/manage
-    device_mgmt/operations/update
-    device_mgmt/operations/diagnostics
-    device_mgmt/operations/observations
-    device_mgmt/operations/device_actions
-    device_mgmt/operations/firmware_actions
-    
-
-Programming Guides
--------------------------------------------------------------------------------
+    getting_started/concepts
+    getting_started/features
+    getting_started/quickstart/index
+    getting_started/register/index
 
 .. toctree::
+    :caption: Application Development
     :maxdepth: 1
+    
+    applications/api
+    applications/mqtt
+    applications/libraries/python
+    applications/libraries/nodejs
+    applications/libraries/java
+    applications/libraries/c_sharp
+
+.. toctree::
+    :caption: Device Development
+    :maxdepth: 1
+    
+    devices/api
+    devices/mqtt
+    
+    devices/device_mgmt/index
+    devices/device_mgmt/requests
+    
+    devices/libraries/python
+    devices/libraries/nodejs
+    devices/libraries/java
+    devices/libraries/c_sharp
+    devices/libraries/embedded_c
+    devices/libraries/mbedcpp
+
+.. toctree::
+    :caption: Gateway Development
+    :maxdepth: 1
+    
+    gateways/mqtt
+
 	
-    libraries/programmingguides
-
-    libraries/python
-    libraries/python_cli_for_devices
-    libraries/python_cli_for_apps
-
-    libraries/embedded_c
-
-    java/javaintro
-    java/java_cli_devices
-    java/java_deviceManagement
-    
-    nodejs/node-js_intro
-    nodejs/node-js_devices
-    nodejs/node-js_applications	
-    
-    libraries/c_sharp_introduction
-    libraries/c_sharp_devices
-    libraries/c_sharp_applications
-
-Messaging
--------------------------------------------------------------------------------
-
 .. toctree::
+    :caption: Reference
     :maxdepth: 1
-
-    messaging/mqtt
-    messaging/devices
-    messaging/managed_devices
-    messaging/applications
-    messaging/payload
-
-
-Reference Material
--------------------------------------------------------------------------------
-
-.. toctree::
-    :maxdepth: 1
-
-    reference/overview
-    reference/security
+    
+    reference/mqtt/index
+    reference/device_model
+    reference/extensions/index
+    reference/security/index
 
 
 Contribute
